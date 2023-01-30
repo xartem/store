@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\DebugServiceProvider;
+use App\Providers\FakerServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -195,6 +197,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
+        DebugServiceProvider::class,
+        FakerServiceProvider::class
 
     ],
 

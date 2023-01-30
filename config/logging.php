@@ -7,6 +7,8 @@ use Monolog\Handler\SyslogUdpHandler;
 
 return [
 
+    'debug' => env('LOG_DEBUG_CHANNEL', 'telegram'),
+
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel
