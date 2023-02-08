@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'title' => ucfirst($this->faker->words(3, true)),
             'brand_id' => Brand::query()->inRandomOrder()->value('id'),
             'price' => $this->faker->randomNumber(4),
-            'thumbnail' => $this->faker->loremflickr('products'),
+            'thumbnail' => $this->faker->fixturesImage('products', 'images/products'),
         ];
     }
 }

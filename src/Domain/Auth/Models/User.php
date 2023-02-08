@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Auth\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'github_id',
         'name',
         'email',
         'password',
