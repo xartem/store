@@ -10,7 +10,6 @@ trait HasSlug
     {
         static::creating(function (Model $model) {
             $model->slug = $model->getUniqueSlug();
-
         });
     }
 
@@ -18,11 +17,11 @@ trait HasSlug
     {
         $slug = $this->slug ?? str($this->{$this->slugFrom()})->slug();
 
-        if($increment) {
+        if ($increment) {
             $slug .= '-'.$increment;
         }
 
-        if($count = $this->query()->where('slug', $slug)->count() > 0) {
+        if ($count = $this->query()->where('slug', $slug)->count() > 0) {
             $slug = $this->getUniqueSlug(++$count);
         }
 

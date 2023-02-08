@@ -13,13 +13,15 @@ class RefreshCommand extends Command
 
     public function handle(): int
     {
-        if(app()->isProduction()) {
+        if (app()->isProduction()) {
             return self::FAILURE;
         }
 
         Storage::deleteDirectory('images/products');
+        Storage::deleteDirectory('images/brands');
 
-        $this->call('migrate:fresh --seed');
+        $this->call('migrate:fresh');
+        $this->call('db:seed');
 
         return self::SUCCESS;
     }

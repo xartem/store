@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Telegram;
+namespace Services\Telegram;
 
 use App\Exceptions\Telegram\TelegramBotApiException;
 use Illuminate\Http\Client\Response;
@@ -31,9 +31,11 @@ class TelegramBotApi
         try {
             $this->http_response = Http::send($method, $this->getUrl($command), ['form_params' => $data]);
             $this->response = $this->http_response->json();
+
             return ! $this->isRequestError();
         } catch (\Throwable $e) {
             report(new TelegramBotApiException('Telegram API request is failed'));
+
             return false;
         }
     }
