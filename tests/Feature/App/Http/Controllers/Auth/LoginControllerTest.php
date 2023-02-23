@@ -11,6 +11,18 @@ class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private array $request;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->request = [
+            'email' => 'test@gmail.com',
+            'password' => '123456',
+        ];
+    }
+
     public function test_login_page_success()
     {
         $this->get(action([LoginController::class, 'page']))
@@ -21,21 +33,14 @@ class LoginControllerTest extends TestCase
 
     public function test_login_attempt_success()
     {
-        $pass = '123456';
-
         $user = UserFactory::new()->create([
-            'email' => 'test@gmail.com',
-            'password' => bcrypt($pass),
+            'email' => $this->request['email'],
+            'password' => bcrypt($this->request['password']),
         ]);
-
-        $request = [
-            'email' => $user->email,
-            'password' => $pass,
-        ];
 
         $response = $this->post(
             action([LoginController::class, 'handle']),
-            $request
+            $this->request
         );
 
         $this->assertAuthenticatedAs($user);
@@ -46,17 +51,15 @@ class LoginControllerTest extends TestCase
     public function test_login_attempt_failed()
     {
         $user = UserFactory::new()->create([
-            'email' => 'test@gmail.com',
+            'email' => $this->request['email'],
+            'password' => bcrypt($this->request['password']),
         ]);
 
-        $request = [
-            'email' => $user->email,
-            'password' => '123456',
-        ];
+        $this->request['password'] = '222222';
 
         $response = $this->post(
             action([LoginController::class, 'handle']),
-            $request
+            $this->request
         );
 
         $this->assertGuest();

@@ -8,7 +8,6 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Tests\TestCase;
 
@@ -18,8 +17,6 @@ class ResetPasswordControllerTest extends TestCase
 
     public function test_reset_password_page_success()
     {
-        Mail::fake();
-
         $this->get(action([ResetPasswordController::class, 'page'], ['token' => '123445']))
             ->assertOk()
             ->assertViewIs('auth.reset')
@@ -28,9 +25,6 @@ class ResetPasswordControllerTest extends TestCase
 
     public function test_reset_password_success()
     {
-        Mail::fake();
-        Event::fake();
-
         $user = UserFactory::new()->create([
             'email' => 'test@gmail.com',
         ]);

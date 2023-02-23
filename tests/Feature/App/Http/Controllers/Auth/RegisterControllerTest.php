@@ -17,9 +17,23 @@ class RegisterControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private array $request;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->request = [
+            'name' => 'Test',
+            'email' => 'test@test.com',
+            'password' => '12345678',
+            'password_confirmation' => '12345678',
+        ];
+    }
+
     public function test_register_page_success()
     {
-        $response = $this->get(
+        $this->get(
             action([RegisterController::class, 'page'])
         )
             ->assertOk()
@@ -29,30 +43,20 @@ class RegisterControllerTest extends TestCase
 
     public function test_register_attempt_success()
     {
-        Event::fake();
-        Notification::fake();
-
-        $request = [
-            'name' => 'Test',
-            'email' => 'test@test.com',
-            'password' => '12345678',
-            'password_confirmation' => '12345678',
-        ];
-
         $this->assertDatabaseMissing('users', [
-            'email' => $request['email'],
+            'email' => $this->request['email'],
         ]);
 
         $response = $this->post(
             action([RegisterController::class, 'handle']),
-            $request
+            $this->request
         );
 
         $this->assertDatabaseHas('users', [
-            'email' => $request['email'],
+            'email' => $this->request['email'],
         ]);
 
-        $user = User::whereEmail($request['email'])->first();
+        $user = User::whereEmail($this->request['email'])->first();
 
         Event::assertDispatched(Registered::class);
         Event::assertListening(Registered::class, SendEmailNewUserCreatedListener::class);
@@ -68,20 +72,13 @@ class RegisterControllerTest extends TestCase
 
     public function test_register_attempt_failed()
     {
-        $request = [
-            'name' => 'Test',
-            'email' => 'test@test.com',
-            'password' => '12345678',
-            'password_confirmation' => '12345678',
-        ];
-
         UserFactory::new()->create([
-            'email' => $request['email'],
+            'email' => $this->request['email'],
         ]);
 
         $this->post(
             action([RegisterController::class, 'handle']),
-            $request
+            $this->request
         )
             ->assertInvalid()
             ->assertRedirect();
