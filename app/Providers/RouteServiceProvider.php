@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\RouteRegistrarContract;
 use App\Routing\AppRegistrar;
 use App\Routing\AuthRegistrar;
+use App\Routing\CatalogRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -19,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     protected array $registrars = [
         AppRegistrar::class,
         AuthRegistrar::class,
+        CatalogRegistrar::class,
     ];
 
     public function boot(): void
@@ -33,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting(): void
     {
         RateLimiter::for('global', function (Request $request) {
-            return Limit::perMinute(500)
+            return Limit::perMinute(100)
                 ->by($request->user()?->id ?: $request->ip())
                 ->response(function (Request $request, array $headers) {
                     return response('Too many requests', Response::HTTP_TOO_MANY_REQUESTS);

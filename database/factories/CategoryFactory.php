@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Domain\Auth\Models\User;
 use Domain\Catalog\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +21,7 @@ class CategoryFactory extends Factory
     {
         return [
             'title' => ucfirst($this->faker->words(1, true)),
-            'slug' => $this->faker->slug(),
+            'slug' => $this->faker->slug(1),
             'is_show_on_main_page' => $this->faker->boolean(),
             'sorting' => $this->faker->numberBetween(1, 999),
         ];

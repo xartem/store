@@ -11,20 +11,19 @@ class Price implements Stringable
     use Makeable;
 
     private array $currencies = [
-        'USD' => '$'
+        'USD' => '$',
     ];
 
     public function __construct(
         private readonly int $value,
         private readonly string $currency = 'USD',
         private readonly int $precision = 100
-    )
-    {
-        if($this->value < 0) {
+    ) {
+        if ($this->value < 0) {
             throw new InvalidArgumentException("Price {$this->value} must be greater than zero");
         }
 
-        if(! isset($this->currencies[$this->currency])) {
+        if (! isset($this->currencies[$this->currency])) {
             throw new InvalidArgumentException("Currency {$this->currency} not supported or undefined");
         }
     }
@@ -52,6 +51,6 @@ class Price implements Stringable
     public function __toString(): string
     {
         return number_format($this->value(), 2, '.', ' ')
-            .' '. $this->symbol();
+            .' '.$this->symbol();
     }
 }

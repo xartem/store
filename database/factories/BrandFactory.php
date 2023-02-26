@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Domain\Auth\Models\User;
 use Domain\Catalog\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,8 +21,8 @@ class BrandFactory extends Factory
     {
         return [
             'title' => ucfirst($this->faker->company()),
-            'slug' => $this->faker->slug(),
-            'thumbnail' => $this->faker->fixturesImage('brands', 'images/brands'),
+            'slug' => $this->faker->slug(1),
+            'thumbnail' => $this->faker->fixturesImage('brands', 'brands'),
             'is_show_on_main_page' => $this->faker->boolean(),
             'sorting' => $this->faker->numberBetween(1, 999),
         ];

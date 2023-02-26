@@ -12,7 +12,7 @@
                     <path fill-rule="evenodd" d="M1.302 2.65H11.64c.292 0 .528.236.528.527v1.056h3.007c.33 0 .62.218.71.536l.905 3.166c.106.019.205.07.282.147l.747.746a.528.528 0 0 1 .154.373v3.476a.528.528 0 0 1-.527.528H15.86a2.111 2.111 0 0 1-4.222 0H6.361a2.111 2.111 0 0 1-4.222 0H.556a.528.528 0 0 1-.528-.528V3.924a.53.53 0 0 1 .155-.374l.746-.746a.528.528 0 0 1 .373-.155ZM15.69 7.926l-.754-2.639h-2.768V7.4c0 .292.236.528.528.528h2.994Zm-1.94 4.224a1.056 1.056 0 1 1 0 2.111 1.056 1.056 0 0 1 0-2.11ZM3.195 13.205a1.055 1.055 0 1 0 2.11 0 1.055 1.055 0 0 0-2.11 0Z" clip-rule="evenodd"/>
                 </svg>
                 <h5 class="pt-2 md:pt-4 text-sm md:text-md font-bold">Бесплатная доставка</h5>
-                <div class="text-xs md:text-sm">от 1000 рублей</div>
+                <div class="text-xs md:text-sm">от 100 $</div>
             </div>
             <div class="flex flex-col items-center gap-2 py-6 md:py-8 px-4 md:px-6 rounded-xl bg-purple text-white text-center">
                 <svg class="w-10 md:w-12 h-10 md:h-12 opacity-40" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="mt-12 text-center">
-            <a href="#" class="btn btn-purple">Все товары &nbsp;→</a>
+            <a href="{{ route('catalog') }}" class="btn btn-purple">Все товары &nbsp;→</a>
         </div>
     </section>
 

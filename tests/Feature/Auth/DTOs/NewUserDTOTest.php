@@ -2,9 +2,7 @@
 
 namespace Tests\Feature\Auth\DTOs;
 
-use App\Http\Requests\Auth\RegisterRequest;
 use Domain\Auth\DTOs\NewUserDTO;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Tests\TestCase;
@@ -18,7 +16,7 @@ class NewUserDTOTest extends TestCase
         $dto = NewUserDTO::fromRequest((new Request())->merge([
             'email' => 'test@gmail.com',
             'name' => 'Name',
-            'password' => '123456'
+            'password' => '123456',
         ]));
 
         $this->assertInstanceOf(NewUserDTO::class, $dto);

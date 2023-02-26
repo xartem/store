@@ -1,0 +1,34 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        //
+    ];
+
+    protected $dates = [
+        'created_at', 'updated_at',
+    ];
+
+    public function newCollection(array $models = []): {{ class }}Collection
+    {
+        return new {{ class }}Collection($models);
+    }
+
+    public function newEloquentBuilder($query): {{ class }}QueryBuilder
+    {
+        return new {{ class }}QueryBuilder($query);
+    }
+
+    public static function newFactory(): {{ class }}tFactory
+    {
+        return {{ class }}Factory::new();
+    }
+}

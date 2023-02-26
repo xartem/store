@@ -13,7 +13,7 @@ class CategoryViewModel
 
     public function mainPage(): Collection
     {
-        return Cache::rememberForever('category_main_page', function() {
+        return Cache::rememberForever('category_main_page', function () {
             return Category::mainPage()->get();
         });
     }

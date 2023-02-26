@@ -2,10 +2,6 @@
 
 namespace Services\Telegram;
 
-use App\Exceptions\Telegram\TelegramBotApiException;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
-
 class TelegramBotApiFake extends TelegramBotApi
 {
     protected bool $success = false;

@@ -2,12 +2,9 @@
 
 namespace Tests\Feature\Auth\Actions;
 
-use App\Http\Requests\Auth\RegisterRequest;
 use Domain\Auth\Contracts\RegisterNewUserContract;
 use Domain\Auth\DTOs\NewUserDTO;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Request;
 use Tests\TestCase;
 
 class RegisterNewUserActionTest extends TestCase

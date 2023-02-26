@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Domain\Catalog\Models\Brand;
-use Domain\Catalog\Models\Category;
 use Domain\Catalog\ViewModels\BrandViewModel;
 use Domain\Catalog\ViewModels\CategoryViewModel;
+use Domain\Product\Models\Product;
+use Domain\Product\ViewModel\ProductViewModel;
 
 class HomeController extends Controller
 {
@@ -15,7 +14,7 @@ class HomeController extends Controller
         return view('index', [
             'brands' => BrandViewModel::make()->mainPage(),
             'categories' => CategoryViewModel::make()->mainPage(),
-            'products' => Product::mainPage()->get(),
+            'products' => ProductViewModel::make()->mainPage(),
         ]);
     }
 }

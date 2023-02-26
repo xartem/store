@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -20,5 +21,6 @@ abstract class TestCase extends BaseTestCase
         Event::fake();
         Notification::fake();
         Mail::fake();
+        //Storage::fake('images');
     }
 }

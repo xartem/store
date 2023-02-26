@@ -12,7 +12,7 @@ class TelegramBotApiTest extends TestCase
     public function test_send_message_success_by_http_fake(): void
     {
         Http::fake([
-            TelegramBotApi::HOST . '*' => Http::response(['ok' => true])
+            TelegramBotApi::HOST.'*' => Http::response(['ok' => true]),
         ]);
 
         $result = (new TelegramBotApi('test', '123'))->sendMessage('Testing');
@@ -39,5 +39,4 @@ class TelegramBotApiTest extends TestCase
 
         $this->assertFalse($result);
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Support\Cast;
 
-use App\Models\Product;
+use Domain\Product\Models\Product;
 use Support\Casts\PriceCast;
 use Support\ValueObject\Price;
 use Tests\TestCase;
