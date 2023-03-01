@@ -14,7 +14,14 @@ class CategoryViewModel
     public function mainPage(): Collection
     {
         return Cache::rememberForever('category_main_page', function () {
-            return Category::mainPage()->get();
+            return Category::mainPage()->limit(10)->get();
         });
+    }
+
+    public function catalogPage(): Collection
+    {
+        return Category::query()
+            ->catalogPage()
+            ->get();
     }
 }

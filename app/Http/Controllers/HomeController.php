@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Domain\Catalog\ViewModels\BrandViewModel;
 use Domain\Catalog\ViewModels\CategoryViewModel;
-use Domain\Product\Models\Product;
 use Domain\Product\ViewModel\ProductViewModel;
 
 class HomeController extends Controller

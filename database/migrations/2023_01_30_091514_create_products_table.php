@@ -30,6 +30,7 @@ return new class extends Migration
             $table->unsignedInteger('price')->default(0);
             $table->boolean('is_show_on_main_page')->default(false);
             $table->integer('sorting')->default(999);
+            $table->json('json_properties')->nullable();
             $table->timestamps();
 
             $table->fullText(['title', 'description']);

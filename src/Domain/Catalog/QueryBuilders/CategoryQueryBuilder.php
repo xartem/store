@@ -10,8 +10,7 @@ class CategoryQueryBuilder extends Builder
     {
         return $this->select(['id', 'title', 'slug'])
             ->where('is_show_on_main_page', true)
-            ->orderBy('sorting')
-            ->limit(10);
+            ->orderBy('sorting');
     }
 
     public function catalogPage(): self

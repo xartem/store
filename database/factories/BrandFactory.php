@@ -21,7 +21,7 @@ class BrandFactory extends Factory
     {
         return [
             'title' => ucfirst($this->faker->company()),
-            'slug' => $this->faker->slug(1),
+            'slug' => $this->faker->slug(3),
             'thumbnail' => $this->faker->fixturesImage('brands', 'brands'),
             'is_show_on_main_page' => $this->faker->boolean(),
             'sorting' => $this->faker->numberBetween(1, 999),

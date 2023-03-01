@@ -3,6 +3,8 @@
 namespace Domain\Product\QueryBuilders;
 
 use Domain\Catalog\Models\Category;
+use Domain\Product\Actions\GetViewedProductIdsAction;
+use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pipeline\Pipeline;
 
@@ -10,34 +12,33 @@ class ProductQueryBuilder extends Builder
 {
     public function mainPage(): self
     {
-        return $this->where('is_show_on_main_page', true)
-            ->orderBy('sorting')
-            ->limit(6);
+        return $this->select(['id', 'title', 'slug', 'price', 'thumbnail', 'json_properties'])
+            ->where('is_show_on_main_page', true)
+            ->orderBy('sorting');
     }
 
-    public function catalogPage(?Category $category = null)
+    public function catalogPage(): self
     {
-        return $this->select(['id', 'title', 'slug', 'price', 'thumbnail'])
-            ->when($category->exists, function (Builder $q) use ($category) {
-                $q->whereRelation('categories', 'categories.id', '=', $category->id);
-            })
-            ->when(request('s'), function ($q) {
-                return $q->whereFullText(['title', 'description'], request('s'));
-            })
-            ->filtered()
-            ->sorted();
+        return $this->select(['id', 'title', 'slug', 'price', 'thumbnail', 'json_properties']);
+    }
+
+    public function whereCategory(?Category $category = null): self
+    {
+        return $this->when($category->exists, function (Builder $q) use ($category) {
+            $q->whereRelation('categories', 'categories.id', '=', $category->id);
+        });
+    }
+
+    public function search(?string $search = null): self
+    {
+        return $this->when($search, function ($q) use ($search) {
+            return $q->whereFullText(['title', 'description'], $search);
+        });
     }
 
     public function sorted(): self
     {
-        // foreach (sorts() as $sort) {
-        //     $sort->apply($this);
-        // }
-
-        app(Pipeline::class)
-            ->send($this)
-            ->through(sorts())
-            ->thenReturn();
+        sorter()->apply($this);
 
         return $this;
     }
@@ -54,5 +55,11 @@ class ProductQueryBuilder extends Builder
             ->thenReturn();
 
         return $this;
+    }
+
+    public function views(?Product $product = null): self
+    {
+        return $this->whereIn('id', app(GetViewedProductIdsAction::class)->run())
+            ->when($product, fn ($q) => $q->whereNot('id', $product->id));
     }
 }

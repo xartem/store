@@ -5,8 +5,7 @@ namespace Domain\Catalog\Providers;
 use Domain\Catalog\Filters\BrandFilter;
 use Domain\Catalog\Filters\FilterManager;
 use Domain\Catalog\Filters\PriceFilter;
-use Domain\Catalog\Sorts\BaseSort;
-use Domain\Catalog\Sorts\SortManager;
+use Domain\Catalog\Sorters\Sorter;
 use Illuminate\Support\ServiceProvider;
 
 class CatalogServiceProvider extends ServiceProvider
@@ -15,7 +14,6 @@ class CatalogServiceProvider extends ServiceProvider
     {
         $this->app->register(ActionServiceProvider::class);
         $this->app->singleton(FilterManager::class);
-        $this->app->singleton(SortManager::class);
     }
 
     public function boot()
@@ -25,8 +23,10 @@ class CatalogServiceProvider extends ServiceProvider
             new BrandFilter(),
         ]);
 
-        app(SortManager::class)->registerSorts([
-            new BaseSort(),
-        ]);
+        $this->app->bind(Sorter::class, function () {
+            return new Sorter([
+                'title', 'price',
+            ]);
+        });
     }
 }

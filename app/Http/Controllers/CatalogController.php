@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Domain\Catalog\Models\Category;
-use Domain\Product\Models\Product;
+use Domain\Catalog\ViewModels\CategoryViewModel;
+use Domain\Product\ViewModel\ProductViewModel;
 use Illuminate\View\View;
 
 class CatalogController extends Controller
@@ -11,12 +12,8 @@ class CatalogController extends Controller
     public function __invoke(?Category $category): View
     {
         return view('catalog.index', [
-            'products' => Product::query()
-                ->catalogPage($category)
-                ->paginate(6),
-            'categories' => Category::query()
-                ->catalogPage()
-                ->get(),
+            'products' => ProductViewModel::make()->catalogPage($category),
+            'categories' => CategoryViewModel::make()->catalogPage(),
             'category' => $category,
         ]);
     }

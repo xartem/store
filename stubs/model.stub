@@ -27,7 +27,7 @@ class {{ class }} extends Model
         return new {{ class }}QueryBuilder($query);
     }
 
-    public static function newFactory(): {{ class }}tFactory
+    public static function newFactory(): {{ class }}Factory
     {
         return {{ class }}Factory::new();
     }

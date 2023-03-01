@@ -3,18 +3,16 @@
 namespace App\Routing;
 
 use App\Contracts\RouteRegistrarContract;
-use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
-class CatalogRegistrar implements RouteRegistrarContract
+class ProductRegistrar implements RouteRegistrarContract
 {
     public function map(Registrar $registrar): void
     {
         Route::middleware('web')->group(function () {
-            Route::get('/catalog/{category:slug?}', CatalogController::class)
-                ->middleware('catalog.view.type')
-                ->name('catalog');
+            Route::get('/product/{product:slug}', ProductController::class)->name('product');
         });
     }
 }
