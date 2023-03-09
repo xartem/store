@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Domain\Auth\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Support\Actions\SessionRegenerateAction;
 
 class SocialAuthController extends Controller
 {
@@ -15,7 +15,7 @@ class SocialAuthController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    public function callback(string $provider): RedirectResponse
+    public function callback(string $provider, SessionRegenerateAction $regenerateAction): RedirectResponse
     {
         $social_user = Socialite::driver($provider)->user();
 
@@ -27,7 +27,7 @@ class SocialAuthController extends Controller
             'password' => bcrypt(str()->random(8)),
         ]);
 
-        Auth::login($user);
+        $regenerateAction(fn () => auth()->login($user));
 
         return redirect()->intended(route('home'));
     }

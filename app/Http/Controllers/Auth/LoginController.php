@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Support\Actions\SessionRegenerateAction;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function handle(LoginRequest $request): RedirectResponse
+    public function handle(LoginRequest $request, SessionRegenerateAction $regenerateAction): RedirectResponse
     {
         if (! Auth::attempt($request->validated())) {
             return back()->withErrors([
@@ -24,7 +25,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $request->session()->regenerate();
+        $regenerateAction();
 
         return redirect()->intended(route('home'));
     }

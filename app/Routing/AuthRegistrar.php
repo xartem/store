@@ -21,7 +21,7 @@ class AuthRegistrar implements RouteRegistrarContract
                 Route::middleware('auth')->group(function () {
                     Route::delete('logout', LogoutController::class)->name('logout');
                 });
-                Route::middleware([])->group(function () {
+                Route::middleware('guest')->group(function () {
                     Route::get('login', [LoginController::class, 'page'])->name('login');
                     Route::post('login', [LoginController::class, 'handle'])->name('login.handle');
                     Route::get('register', [RegisterController::class, 'page'])->name('register');

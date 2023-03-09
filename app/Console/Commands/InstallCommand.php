@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'shop:install';
+    protected $signature = 'install';
 
-    protected $description = 'Shop installation';
+    protected $description = 'Project installation';
 
     public function handle(): int
     {

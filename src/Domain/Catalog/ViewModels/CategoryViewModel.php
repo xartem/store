@@ -22,6 +22,7 @@ class CategoryViewModel
     {
         return Category::query()
             ->catalogPage()
+            ->limit(15)
             ->get();
     }
 }

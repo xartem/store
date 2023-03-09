@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Storage;
 
 class RefreshCommand extends Command
 {
-    protected $signature = 'shop:refresh';
+    protected $signature = 'dev:refresh';
 
-    protected $description = 'Shop refresh';
+    protected $description = 'Project refresh';
 
     public function handle(): int
     {
