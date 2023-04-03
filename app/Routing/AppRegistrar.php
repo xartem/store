@@ -8,7 +8,7 @@ use App\Http\Controllers\ThumbnailController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
-class AppRegistrar implements RouteRegistrarContract
+final class AppRegistrar implements RouteRegistrarContract
 {
     public function map(Registrar $registrar): void
     {

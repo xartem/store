@@ -26,7 +26,7 @@ class Cart extends Model
         return self::query()->where('created_at', '<=', now()->subDay());
     }
 
-    //    public function newCollection(array $models = []): CartCollection
+//    public function newCollection(array $models = []): CartCollection
 //    {
 //        return new CartCollection($models);
 //    }

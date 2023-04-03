@@ -24,7 +24,7 @@ class Product extends Model
 
     protected $fillable = [
         'slug', 'title', 'description', 'brand_id', 'thumbnail', 'price', 'sorting', 'is_show_on_main_page',
-        'json_properties',
+        'json_properties', 'quantity',
     ];
 
     protected $dates = [

@@ -7,7 +7,7 @@ use App\Http\Controllers\CatalogController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
-class CatalogRegistrar implements RouteRegistrarContract
+final class CatalogRegistrar implements RouteRegistrarContract
 {
     public function map(Registrar $registrar): void
     {

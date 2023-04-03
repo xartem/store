@@ -15,7 +15,7 @@ class DomainCommand extends Command
         'QueryBuilders',
     ];
 
-    protected $signature = 'dev:domain';
+    protected $signature = 'make:domain';
 
     protected $description = 'Make domain';
 

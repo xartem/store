@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <title>@yield('title', config('app.name'))</title>
+    <title>@yield('title', $seo_title ?? config('app.name'))</title>
     <meta name="description" content="Видеокурс по изучению принципов программирования">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 

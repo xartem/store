@@ -7,7 +7,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
-class ProductRegistrar implements RouteRegistrarContract
+final class ProductRegistrar implements RouteRegistrarContract
 {
     public function map(Registrar $registrar): void
     {

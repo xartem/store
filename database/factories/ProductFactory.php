@@ -28,6 +28,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomNumber(4),
             'thumbnail' => $this->faker->fixturesImage('products', 'products'),
             'is_show_on_main_page' => $this->faker->boolean(),
+            'quantity' => $this->faker->numberBetween(1, 20),
             'sorting' => $this->faker->numberBetween(1, 999),
         ];
     }

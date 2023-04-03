@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('thumbnail')->nullable();
             $table->unsignedInteger('price')->default(0);
+            $table->unsignedInteger('quantity')->default(0);
             $table->boolean('is_show_on_main_page')->default(false);
             $table->integer('sorting')->default(999);
             $table->json('json_properties')->nullable();

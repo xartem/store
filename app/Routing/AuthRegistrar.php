@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\SocialAuthController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
-class AuthRegistrar implements RouteRegistrarContract
+final class AuthRegistrar implements RouteRegistrarContract
 {
     public function map(Registrar $registrar): void
     {
